@@ -11,13 +11,13 @@ class BankAccount:
 
     :param account_holder: The name of the account owner
     """
+
     def __init__(self, account_holder: str) -> None:
         """
         Constructor method
         """
         self.account_holder = account_holder
         self.balance = 0
-
 
     def deposit(self, amount: float) -> float:
         """
@@ -29,7 +29,6 @@ class BankAccount:
         self.balance += amount
 
         return self.balance
-
 
     def withdraw(self, amount: float) -> float:
         """
@@ -46,7 +45,6 @@ class BankAccount:
         print("Insufficient funds")
         return -1
 
-
     def balance_info(self) -> float:
         """
         Return the current balance
@@ -54,7 +52,6 @@ class BankAccount:
         :return: The current balance
         """
         return self.balance
-
 
     def account_info(self) -> str:
         """
@@ -70,8 +67,8 @@ class CheckingAccount(BankAccount):
 
     :param account_holder: The name of the account owner
     """
-    transaction_fee: float = 2.5 # usd
 
+    transaction_fee: float = 2.5  # usd
 
     def withdraw(self, amount: float) -> float:
         """
@@ -79,7 +76,7 @@ class CheckingAccount(BankAccount):
 
         :return: The updated balance
         """
-        return super().withdraw(amount+self.transaction_fee)
+        return super().withdraw(amount + self.transaction_fee)
 
 
 class SavingsAccount(BankAccount):
@@ -89,8 +86,8 @@ class SavingsAccount(BankAccount):
 
     :param account_holder: The name of the account owner
     """
-    interest_rate: float = 0.025 # 2.5%
 
+    interest_rate: float = 0.025  # 2.5%
 
     def apply_interest(self) -> float:
         """
@@ -124,7 +121,7 @@ Testing base bank account
     assert bank_account.withdraw(500) == 0
     print(bank_account.account_info())
 
-    assert bank_account.withdraw(500) == -1 # this should error out
+    assert bank_account.withdraw(500) == -1  # this should error out
 
     try:
         bank_account.deposit("a")
@@ -160,10 +157,12 @@ Testing checking account
     assert checking_account.deposit(1000) == 1000
     print(checking_account.account_info())
 
-    assert checking_account.withdraw(500) == 500-2.5 # subtract the transaction fee
+    assert checking_account.withdraw(500) == 500 - 2.5  # subtract the transaction fee
     print(checking_account.account_info())
 
-    assert checking_account.withdraw(500) == -1 # this should error out since there's less than 500
+    assert (
+        checking_account.withdraw(500) == -1
+    )  # this should error out since there's less than 500
 
     try:
         checking_account.withdraw("a")
@@ -193,7 +192,7 @@ Testing savings account
     assert savings_account.deposit(1000) == 1000
     print(savings_account.account_info())
 
-    assert savings_account.apply_interest() == 1025 # 1000*(1 + 0.025)
+    assert savings_account.apply_interest() == 1025  # 1000*(1 + 0.025)
     print(savings_account.account_info())
 
     print(
