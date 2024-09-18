@@ -91,7 +91,7 @@ class SavingsAccount(BankAccount):
 
     def apply_interest(self) -> float:
         """
-        Applies the interest rate to the chosen
+        Applies the interest rate to the current balance
 
         :return: The updated balance
         """
