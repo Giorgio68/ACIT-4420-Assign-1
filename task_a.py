@@ -1,3 +1,10 @@
+"""
+ACIT 4420, Assignment 1, Task A
+
+Giorgio Salvemini
+"""
+
+
 import time
 from typing import Optional
 from tqdm import tqdm
