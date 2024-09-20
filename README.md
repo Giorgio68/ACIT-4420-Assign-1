@@ -16,6 +16,8 @@ While the function is relatively readable, there are some ways to improve it fur
 
 As mentioned before, one bug found was the default value being an empty list for one of the function parameters; the solution was relatively simple, it being changing it to default to `None`, and instead creating a new list if none is passed by the user. Additionally, the function was changed to handle factorization of all even numbers separately, simplifying the factorization process. This lead to real time savings, with the optimized function cutting its runtime by half when factorizing the first million integers.
 
+Finally, an additional, optional parameter was added to the new, optimized function, allowing the user to remove duplicates if so desired. This defaults to `False` to conform with most other implementations of this algorithm (as they all include duplicates).
+
 The code complexity is O(√n), as if the number to be factorized is a perfect square we will need to check every number from `2` to `√n`.
 
 ## Task B

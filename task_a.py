@@ -4,7 +4,6 @@ ACIT 4420, Assignment 1, Task A
 Giorgio Salvemini
 """
 
-
 import time
 from typing import Optional
 from tqdm import tqdm
@@ -25,7 +24,9 @@ def find_prime_factors(n, prime_factors=[]):
 
 
 def optimized_find_prime_factors(
-    n: int, prime_factors: Optional[list] = None
+    n: int,
+    prime_factors: Optional[list] = None,
+    remove_duplicates: Optional[bool] = False,
 ) -> list[int]:
     """
     Finds all prime factors for a given integer
@@ -57,6 +58,9 @@ def optimized_find_prime_factors(
 
     if n > 1:
         prime_factors.append(n)
+
+    if remove_duplicates:
+        prime_factors = list(set(prime_factors))
 
     return prime_factors
 
@@ -139,10 +143,36 @@ Completed time test
 """
     )
 
+    print(
+        """
+*************************************
+Ensure that duplicates can be removed
+*************************************
+"""
+    )
+
+    prime_fac = optimized_find_prime_factors(1_000)
+    prime_fac_no_duplicates = optimized_find_prime_factors(1_000, remove_duplicates=True)
+
+    assert prime_fac != prime_fac_no_duplicates
+
+    print(
+        f"""
+Prime factors of 1_000 are: {prime_fac}.
+Unique prime factors of 1_000 are: {prime_fac_no_duplicates}
+"""
+    )
+
+    print(
+        """
+********************************
+Duplicate removal test completed
+********************************
+"""
+    )
+
 
 def main() -> None:
-    print(list(primefac(1000)))
-    print(find_prime_factors(1000))
     test_find_prime_factors()
 
 
